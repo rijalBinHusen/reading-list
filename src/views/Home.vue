@@ -16,30 +16,14 @@
 </template>
 
 <script>
-import { ref } from 'vue'
 import CreateBookForm from '@/components/CreateBookForm'
-
-import { db } from '../firebase/firebaseApp'
-import { collection, getDocs } from 'firebase/firestore'
+import getCollection from '../composables/getCollection'
 
 export default {
   name: 'Home',
   components: { CreateBookForm },
   setup() {
-    const books = ref()
-
-    const colRef = collection(db, 'books')
-
-    getDocs(colRef)
-      .then(snapshot => {
-        let docs = []
-        snapshot.docs.forEach(doc => {
-          docs.push({
-            ...doc.data(), id: doc.id
-          })
-        })
-        books.value = docs
-      })
+    const { documents: books} = getCollection('books')    
 
     return { books }
   }
