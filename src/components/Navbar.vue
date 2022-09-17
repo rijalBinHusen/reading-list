@@ -27,13 +27,16 @@
 import { auth } from '../firebase/firebaseApp'
 import { signOut } from 'firebase/auth'
 import getUser from '../composables/getUser'
+import { useRouter } from 'vue-router'
 
 export default {
   setup() {
     const { user } = getUser()
+    const router = useRouter()
 
     const handleClick = () => {
       signOut(auth)
+      router.push('/login')
     }
 
     return { handleClick, user }
