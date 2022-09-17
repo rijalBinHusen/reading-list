@@ -20,12 +20,14 @@ import CreateBookForm from '@/components/CreateBookForm'
 import getCollection from '../composables/getCollection'
 import { db } from '../firebase/firebaseApp'
 import { doc, deleteDoc, updateDoc } from 'firebase/firestore'
+import getUser from '../composables/getUser'
 
 export default {
   name: 'Home',
   components: { CreateBookForm },
   setup() {
-    const { documents: books} = getCollection('books')    
+    const { user } = getUser()
+    const { documents: books} = getCollection('books', ['userUid', '==', user.value.uid])    
 
     const handleDelete = async (book) => {
       const docRef = doc(db, 'books', book.id)
