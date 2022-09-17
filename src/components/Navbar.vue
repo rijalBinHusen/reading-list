@@ -4,17 +4,22 @@
       <h1>My Book List</h1>
 
       <!-- for logged in users -->
-      <div>
+      <div v-if="user">
         <router-link to="/">Home</router-link>
         <button @click="handleClick">Logout</button>
       </div>
       
       <!-- for logged out users -->
-      <div>
+      <div v-else>
         <router-link to="/login">Login</router-link>
         <router-link to="/signup">Signup</router-link>
       </div>
     </nav>
+
+    <!--  show user email -->
+    <div v-if="user" class="user">
+      Logged in as {{ user.email }}
+    </div>
   </div>
 </template>
 
