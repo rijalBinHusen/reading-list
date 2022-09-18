@@ -1,5 +1,16 @@
 # reading-list
 
+## The app would look like so:
+### Signup :
+![signup](public/01signup.png)
+
+### Sign in:
+![Sign in](public/02signin.png)
+
+### Lists book:
+![Lists](public/03listsbook.png)
+
+
 ## Project setup
 ```
 npm install

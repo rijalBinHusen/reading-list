@@ -28,7 +28,6 @@ import { auth } from '../firebase/firebaseApp'
 import { signOut } from 'firebase/auth'
 import getUser from '../composables/getUser'
 import { useRouter } from 'vue-router'
-import { watchEffect } from '@vue/runtime-core'
 
 export default {
   setup() {
@@ -37,13 +36,8 @@ export default {
 
     const handleClick = () => {
       signOut(auth)
+      router.push('/login')
     }
-
-    watchEffect(() => {
-      if(!user.value) {
-        router.push('/login')
-      }
-    })
 
     return { handleClick, user }
   }
